@@ -5,19 +5,21 @@ A path is a collection of connected nodes in a tree, where no node is connected 
 two other nodes; a path sum is the sum of the values of the nodes in a particular path.
 
 Sample Input:
+```
 tree =
     1
     / \
    2   3
   / \ / \
  4  5 6  7
+```
 
 Sample Output:
 18 // 5 + 2 + 1 + 3 + 7
 
 - - -
 
-Example Request Body
+Example Request Body for 'POST /max-path-sum'
 ```
     {
         "tree": {
