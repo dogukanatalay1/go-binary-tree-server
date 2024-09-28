@@ -18,6 +18,7 @@ func BuildTree(nodes map[string]Node, nodeID string) *BinaryTree {
     }
 }
 
+/* This function returns sum of max path of binary tree */
 func MaxPathSum(node *BinaryTree) (int, int) {
     if node == nil {
         return 0, math.MinInt32
@@ -26,17 +27,10 @@ func MaxPathSum(node *BinaryTree) (int, int) {
     leftPathSum, leftMaxSum := MaxPathSum(node.Left)
     rightPathSum, rightMaxSum := MaxPathSum(node.Right)
 
-    maxChildPathSum := max(leftPathSum, rightPathSum)
-    maxPathSumAsRoot := max(node.Value, node.Value+maxChildPathSum)
-    maxSumWithSplit := max(maxPathSumAsRoot, node.Value+leftPathSum+rightPathSum)
-    maxOverallSum := max(maxSumWithSplit, max(leftMaxSum, rightMaxSum))
+    maxChildPathSum := math.Max(float64(leftPathSum), float64(rightPathSum))
+    maxPathSumAsRoot := math.Max(float64(node.Value), float64(node.Value) + maxChildPathSum)
+    maxSumWithSplit := math.Max(maxPathSumAsRoot, float64(node.Value) + float64(leftPathSum) + float64(rightPathSum))
+    maxOverallSum := math.Max(maxSumWithSplit, math.Max(float64(leftMaxSum), float64(rightMaxSum)))
 
-    return maxPathSumAsRoot, maxOverallSum
-}
-
-func max(a, b int) int {
-    if a > b {
-        return a
-    }
-    return b
+    return int(maxPathSumAsRoot), int(maxOverallSum)
 }

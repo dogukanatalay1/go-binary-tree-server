@@ -4,7 +4,7 @@ import (
     "net/http"
     . "golang-binary-tree/types"
 	"encoding/json"
-	helpers "golang-binary-tree/helpers"
+	service "golang-binary-tree/service"
 )
 
 func HandleMaxPathSum(w http.ResponseWriter, r *http.Request) {
@@ -25,11 +25,11 @@ func HandleMaxPathSum(w http.ResponseWriter, r *http.Request) {
         nodes[node.ID] = node
     }
 
-    root := helpers.BuildTree(nodes, input.Tree.Root)
-    _, maxSum := helpers.MaxPathSum(root)
+    root := service.BuildTree(nodes, input.Tree.Root)
+    _, maxSum := service.MaxPathSum(root)
 
     output := Output{MaxPathSum: maxSum}
-	
+
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(output)
 }
